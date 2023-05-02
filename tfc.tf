@@ -1,3 +1,5 @@
+provider "tfe" {
+}
 resource "tfe_project" "team" {
   name = var.team_name
 }
