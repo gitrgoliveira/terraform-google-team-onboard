@@ -7,9 +7,10 @@ variable "team_members" {
   description = "Comma separated list of emails"
   validation {
     condition = length(
-      regexall("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+      regexall("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}",
       var.team_members)
     ) == length(split(",", var.team_members))
-    error_message = "Email list must contain only valid email addresses."
+
+    error_message = "Email list must contain only valid email addresses, in a comma separated list. Example: user1@domain3.com, user2@domain3.com"
   }
 }

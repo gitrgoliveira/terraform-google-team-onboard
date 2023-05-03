@@ -5,7 +5,8 @@ resource "tfe_project" "team" {
 }
 
 resource "tfe_team" "team" {
-  name = var.team_name
+  name       = var.team_name
+  visibility = "secret"
 }
 
 resource "tfe_team_project_access" "admin" {
@@ -23,7 +24,7 @@ resource "tfe_organization_membership" "org_member" {
 }
 
 resource "tfe_team_organization_member" "test" {
-  for_each = tfe_organization_membership.org_member
-  team_id = tfe_team.team.id
+  for_each                   = tfe_organization_membership.org_member
+  team_id                    = tfe_team.team.id
   organization_membership_id = each.value.id
 }
